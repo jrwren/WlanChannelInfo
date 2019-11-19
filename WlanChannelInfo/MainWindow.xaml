@@ -1,0 +1,82 @@
+﻿<!--Copyright 2010 Jay R. Wren - http://jrwren.wrenfam.com/blog/
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.-->
+<Window x:Class="WlanChannelInfo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="WlanChannelInfo" Height="300" Width="300"
+        xmlns:local="clr-namespace:WlanChannelInfo"
+        >
+    <Window.InputBindings>
+        <KeyBinding Key="O"
+              Modifiers="Control" 
+              Command="ApplicationCommands.Open" />
+        <KeyBinding Key="S"
+              Modifiers="Control" 
+              Command="ApplicationCommands.Save" />
+    </Window.InputBindings>
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.New"
+                        Executed="NewCommandExecuted" />
+        <CommandBinding Command="ApplicationCommands.Open"
+                        Executed="OpenCommandExecuted" />
+        <CommandBinding Command="local:CustomCommands.Exit"
+                        Executed="ExitCommandExecuted" />
+        <CommandBinding Command="Refresh"
+                        Executed="RefreshCommandExecuted" />
+        <CommandBinding Command="local:CustomCommands.About"
+                        Executed="AboutCommandExecuted" />
+    </Window.CommandBindings>
+    <Window.Resources>
+        <ObjectDataProvider ObjectType="{x:Type local:InterfaceService}" x:Key="interfaceService" />
+        <ObjectDataProvider x:Key="wifiinfo" ObjectInstance="{StaticResource interfaceService}" MethodName="GetWifiInfo"/>
+    </Window.Resources>
+    <DockPanel Name="dockPanel1">
+        <Menu Name="menu1" DockPanel.Dock="Top">
+            <MenuItem Header="_File">
+                <MenuItem Command="local:CustomCommands.Exit" />
+            </MenuItem>
+            <MenuItem Header="_View" >
+                <MenuItem Command="local:CustomCommands.ToggleStatusBar" />
+            </MenuItem>
+            <MenuItem Header="_Help">
+                <MenuItem Command="ApplicationCommands.Help"/>
+                <Separator />
+                <MenuItem Command="local:CustomCommands.About" Header="_About"/>
+            </MenuItem>
+        </Menu>
+        <ToolBar Name="toolBar1" DockPanel.Dock="Top" >
+            <Button Command="Refresh">Refresh</Button>
+        </ToolBar>
+
+        <StatusBar DockPanel.Dock="Bottom">
+            <StatusBarItem>
+                <TextBlock Name="statusText" Text="Ready" Grid.Column="0" Grid.Row="0" />
+            </StatusBarItem>
+            <StatusBarItem>
+                <TextBlock Name="statusText2" Text="OK" Grid.Column="1" Grid.Row="0" />
+            </StatusBarItem>
+        </StatusBar>
+        <StackPanel DockPanel.Dock="Left">
+
+        </StackPanel>
+        <StackPanel DockPanel.Dock="Right">
+
+        </StackPanel>
+
+            <ListView 
+                ItemsSource="{Binding Source={StaticResource wifiinfo}}"
+                      Name="dataGrid"
+                      />
+    </DockPanel>
+</Window>

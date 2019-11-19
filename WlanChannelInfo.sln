@@ -1,0 +1,66 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WlanChannelInfo", "WlanChannelInfo\WlanChannelInfo.csproj", "{6513DC1F-59F8-48A0-9859-FDD619F60160}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManagedWifi", "..\..\..\..\Downloads\managedwifi-1.1\ManagedWifi.csproj", "{6AA425C9-EA6A-4B01-AAED-5FF122E8B663}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E1AA837E-B510-40FD-8DEC-3CB40315A89B}"
+	ProjectSection(SolutionItems) = preProject
+		LICENSE.TXT = LICENSE.TXT
+		Local.testsettings = Local.testsettings
+		README.txt = README.txt
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+		WlanChannelInfo.vsmdi = WlanChannelInfo.vsmdi
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WlanChannelInfo.Test", "WlanChannelInfo.Test\WlanChannelInfo.Test.csproj", "{1138EC52-B19C-47D5-B5CB-FCC97DA42FF6}"
+EndProject
+Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = WlanChannelInfo.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6513DC1F-59F8-48A0-9859-FDD619F60160}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{6513DC1F-59F8-48A0-9859-FDD619F60160}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{6513DC1F-59F8-48A0-9859-FDD619F60160}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{6513DC1F-59F8-48A0-9859-FDD619F60160}.Debug|x86.ActiveCfg = Debug|x86
+		{6513DC1F-59F8-48A0-9859-FDD619F60160}.Debug|x86.Build.0 = Debug|x86
+		{6513DC1F-59F8-48A0-9859-FDD619F60160}.Release|Any CPU.ActiveCfg = Release|x86
+		{6513DC1F-59F8-48A0-9859-FDD619F60160}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{6513DC1F-59F8-48A0-9859-FDD619F60160}.Release|Mixed Platforms.Build.0 = Release|x86
+		{6513DC1F-59F8-48A0-9859-FDD619F60160}.Release|x86.ActiveCfg = Release|x86
+		{6513DC1F-59F8-48A0-9859-FDD619F60160}.Release|x86.Build.0 = Release|x86
+		{6AA425C9-EA6A-4B01-AAED-5FF122E8B663}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6AA425C9-EA6A-4B01-AAED-5FF122E8B663}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6AA425C9-EA6A-4B01-AAED-5FF122E8B663}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{6AA425C9-EA6A-4B01-AAED-5FF122E8B663}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{6AA425C9-EA6A-4B01-AAED-5FF122E8B663}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6AA425C9-EA6A-4B01-AAED-5FF122E8B663}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6AA425C9-EA6A-4B01-AAED-5FF122E8B663}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6AA425C9-EA6A-4B01-AAED-5FF122E8B663}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{6AA425C9-EA6A-4B01-AAED-5FF122E8B663}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{6AA425C9-EA6A-4B01-AAED-5FF122E8B663}.Release|x86.ActiveCfg = Release|Any CPU
+		{1138EC52-B19C-47D5-B5CB-FCC97DA42FF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1138EC52-B19C-47D5-B5CB-FCC97DA42FF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1138EC52-B19C-47D5-B5CB-FCC97DA42FF6}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{1138EC52-B19C-47D5-B5CB-FCC97DA42FF6}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{1138EC52-B19C-47D5-B5CB-FCC97DA42FF6}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1138EC52-B19C-47D5-B5CB-FCC97DA42FF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1138EC52-B19C-47D5-B5CB-FCC97DA42FF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1138EC52-B19C-47D5-B5CB-FCC97DA42FF6}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{1138EC52-B19C-47D5-B5CB-FCC97DA42FF6}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{1138EC52-B19C-47D5-B5CB-FCC97DA42FF6}.Release|x86.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
