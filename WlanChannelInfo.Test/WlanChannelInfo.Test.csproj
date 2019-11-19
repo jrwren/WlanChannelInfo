@@ -44,7 +44,7 @@
     <Compile Include="UnitTest1.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\Downloads\managedwifi-1.1\ManagedWifi.csproj">
+    <ProjectReference Include="..\..\managedwifi\ManagedWifi.csproj">
       <Project>{6AA425C9-EA6A-4B01-AAED-5FF122E8B663}</Project>
       <Name>ManagedWifi</Name>
     </ProjectReference>

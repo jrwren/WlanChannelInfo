@@ -17,7 +17,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Collections.ObjectModel;
-using NativeWifi;
+using ManagedWifi;
 
 namespace WlanChannelInfo
 {
@@ -63,19 +63,20 @@ namespace WlanChannelInfo
              try
              {
                  
-                 foreach (WlanClient.WlanInterface wlanIface in client.Interfaces)
+                 foreach (var wlanIface in client.Interfaces)
                  {
                      foreach (var bssentry in wlanIface.GetNetworkBssList())
                      {
-                         sw.WriteLine("bssentry {0} channel {1} freq {2} strength {4} link quality {3}", GetStringForSSID(bssentry.dot11Ssid), 
-                             Wifi.FrequencyChannelMap[bssentry.chCenterFrequency],
-                             bssentry.chCenterFrequency,
-                             bssentry.linkQuality,
-                             bssentry.rssi
+                         sw.WriteLine("bssentry {0} channel {1} freq {2} strength {4} link quality {3}",
+                             GetStringForSSID(bssentry.BaseEntry.dot11Ssid), 
+                             Wifi.FrequencyChannelMap[bssentry.BaseEntry.chCenterFrequency],
+                             bssentry.BaseEntry.chCenterFrequency,
+                             bssentry.BaseEntry.linkQuality,
+                             bssentry.BaseEntry.rssi
                              );
                      }
                      // Lists all networks with WEP security
-                     Wlan.WlanAvailableNetwork[] networks = wlanIface.GetAvailableNetworkList(0);
+                     var networks = wlanIface.GetAvailableNetworkList(0); // no flags
                      foreach (Wlan.WlanAvailableNetwork network in networks)
                      {
                          //if ( network.dot11DefaultCipherAlgorithm == Wlan.Dot11CipherAlgorithm.WEP )
@@ -83,7 +84,8 @@ namespace WlanChannelInfo
                              sw.WriteLine("Found WEP network with SSID {0}. with strength {1} and {2}", 
                                  GetStringForSSID(network.dot11Ssid), 
                                  network.wlanSignalQuality, 
-                                 network.dot11BssType
+                                 //network.dot11BssType
+                                 network.Dot11PhyTypes
                                  );
                          }
                      }
@@ -105,16 +107,19 @@ namespace WlanChannelInfo
                 from wlanIface in client.Interfaces
                 from bssentry in wlanIface.GetNetworkBssList()
                 from network in wlanIface.GetAvailableNetworkList(Wlan.WlanGetAvailableNetworkFlags.IncludeAllAdhocProfiles)
-                where InterfaceService.GetStringForSSID(network.dot11Ssid) == InterfaceService.GetStringForSSID(bssentry.dot11Ssid)
+                where 
+                GetStringForSSID(network.dot11Ssid) == GetStringForSSID(bssentry.BaseEntry.dot11Ssid)
                 select new WifiInfo
                          {
-                             bssentry = GetStringForSSID(bssentry.dot11Ssid),
-                             channel = Wifi.FrequencyChannelMap.ContainsKey(bssentry.chCenterFrequency) ? Wifi.FrequencyChannelMap[bssentry.chCenterFrequency]: -1,
-                             frequency = bssentry.chCenterFrequency,
-                             linqQuality = bssentry.linkQuality,
-                             strength = bssentry.rssi,
+                             bssentry = GetStringForSSID(bssentry.BaseEntry.dot11Ssid),
+                             channel = Wifi.FrequencyChannelMap.ContainsKey(bssentry.BaseEntry.chCenterFrequency) ? 
+                                Wifi.FrequencyChannelMap[bssentry.BaseEntry.chCenterFrequency]: -1,
+                             frequency = bssentry.BaseEntry.chCenterFrequency,
+                             linqQuality = bssentry.BaseEntry.linkQuality,
+                             strength = bssentry.BaseEntry.rssi,
                              signalQuality = network.wlanSignalQuality,
-                             wifitype = network.dot11BssType
+                             // wifitype = network.dot11Bsstype
+                             wifitype = network.Dot11PhyTypes
                          };
             retval = retval.ToList();
             System.Diagnostics.Debug.Assert(retval.Count() > 0);
@@ -130,7 +135,8 @@ namespace WlanChannelInfo
         public uint linqQuality { get; set; }
         public int strength { get; set; }
         public uint signalQuality { get; set; }
-        public Wlan.Dot11BssType wifitype { get; set; }
+        //public Wlan.Dot11BssType wifitype { get; set; }
+        public Wlan.Dot11PhyType[] wifitype {get;set;}
     }
 
     public static class EnumerableExt
